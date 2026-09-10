@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fumiko (文子) | Local-First Email Intelligence Powered by On-Device AI</title>
+    
+    <!-- SEO & Social Sharing Cards (OpenGraph / Twitter) -->
+    <meta name="description" content="A private, local-first desktop inbox watcher powered by on-device AI. Monitor Gmail and Outlook with Ollama. Zero cloud subscriptions, zero telemetry.">
+    <meta property="og:title" content="Fumiko (文子) - Local-First Email Intelligence">
+    <meta property="og:description" content="Monitor your inboxes without cloud AI reading your mail. 100% on-device AI classification with Ollama and Rust.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://animeforlife191.github.io/fumiko.html">
+    <!-- Replace with a link to your preview image if available -->
+    <meta property="og:image" content="../../assets/png/logo120x120.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="../../assets/css/default/shared.css">
+    <link rel="stylesheet" href="../../assets/css/default/fumiko.css">
+</head>
+<body class="fumiko-theme">
+    <header class="navbar navbar--fumiko">
+        <a href="fumiko.html" class="navbar__brand">Fumiko (文子)</a>
+
+        <nav class="navbar__nav-links">
+            <a href="/index.html">Home</a>
+            <a href="../applications.html">Applications</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQ</a>
+            <a href="#download">Download</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+
+        <!-- Hero Section -->
+        <section class="page-hero page-hero--fumiko">
+            <div class="page-hero__content">
+                <p class="eyebrow">Local-First · On-Device AI · Open Source</p>
+                <h1>Intelligent Inbox Monitoring Without the Privacy Trade-Off</h1>
+                <p class="page-hero__description">
+                    Connect Gmail and Outlook. Triage incoming mail using lightweight local language models. 
+                    Surface interview offers, client requests, and critical alerts without cloud AI subscriptions, telemetry, or password sharing.
+                </p>
+                <div class="page-hero__actions">
+                    <a href="#download" class="button button--fumiko-primary">Download for Desktop</a>
+                    <a href="https://github.com/AnimeForLife191/Fumiko" target="_blank" rel="noopener noreferrer" class="button button--fumiko-ghost">View on GitHub</a>
+                </div>
+            </div>
+
+            <!-- Optional Hero App Screenshot Preview -->
+            <!-- Uncomment and link an image when you have a screenshot ready! -->
+            <!--
+            <div class="hero__preview" style="margin-top: 36px; max-width: 960px; margin-inline: auto;">
+                <img src="../../assets/img/dashboard-preview.png" alt="Fumiko Dashboard Interface" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-subtle); box-shadow: 0 16px 40px rgba(0,0,0,0.5);">
+            </div>
+            -->
+        </section>
+
+        <!-- Features Grid -->
+        <section class="features" id="features">
+            <div class="features__header">
+                <h2>Built for Privacy, Speed, and Focus</h2>
+                <p>Designed so you never have to obsessively refresh your inboxes again.</p>
+            </div>
+
+            <div class="features__grid">
+                <div class="feature-card feature-card--fumiko">
+                    <h3>100% On-Device AI</h3>
+                    <p>
+                        Runs directly against local Ollama language models on your hardware (<code>127.0.0.1</code>). 
+                        Your email subjects, snippets, and bodies never touch remote cloud AI servers or train third-party models.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Two-Tier Smart Gating</h3>
+                    <p>
+                        Tier 1 evaluates lightweight metadata and preview snippets in milliseconds. 
+                        Ambiguous messages are promoted to Tier 2 for body inspection under strict batch quotas to protect CPU and memory.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Dedicated Findings Board</h3>
+                    <p>
+                        High-priority emails matching your custom rules are pinned to an actionable Findings dashboard, 
+                        ensuring interview screening requests and urgent notices never get buried under promotional noise.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Native Keyring Security</h3>
+                    <p>
+                        Connect via official OAuth 2.0 with PKCE. Passwords are never handled, and refresh tokens live 
+                        exclusively in your operating system credential vault (Keychain, Windows Credential Manager, or Secret Service).
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Lightning-Fast SQLite Storage</h3>
+                    <p>
+                        Header metadata and sync state are stored in a local, WAL-enabled SQLite database with UUID v7 indexing 
+                        for instant startup, time-ordered sorting, and snappy offline searching.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Total Data Ownership & Wipe</h3>
+                    <p>
+                        Includes customizable trash retention purging and a built-in master <strong>Wipe All Local Data</strong> button 
+                        that instantly deletes local databases, executes a disk vacuum, and cleans all credentials from the OS keyring.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow / How it Works -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="features__header">
+                <h2>How Fumiko Works</h2>
+                <p>A simple three-step loop that runs entirely on your machine.</p>
+            </div>
+
+            <div class="workflow__grid">
+                <div class="workflow__step">
+                    <span class="step-number">01</span>
+                    <h3>Link Your Mailboxes</h3>
+                    <p>Authorize Gmail or Outlook through standard browser-based OAuth with PKCE. Use default credentials or provide your own custom Google/Microsoft Client IDs.</p>
+                </div>
+                <div class="workflow__step">
+                    <span class="step-number">02</span>
+                    <h3>Define Watch Criteria</h3>
+                    <p>Create natural language rules like <em>"Interviews, recruiter outreach, and screening requests"</em>, <em>"Urgent client questions"</em>, or <em>"Invoices & Receipts"</em>.</p>
+                </div>
+                <div class="workflow__step">
+                    <span class="step-number">03</span>
+                    <h3>Review Pinned Findings</h3>
+                    <p>Fumiko monitors your inboxes in the background, runs local inference, and highlights confirmed matches with confidence ratings directly on your Findings board.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq" style="padding: 64px 24px; max-width: 900px; margin: 0 auto;">
+            <div class="features__header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about privacy, performance, and compatibility.</p>
+            </div>
+
+            <div class="features__grid" style="grid-template-columns: 1fr; gap: 16px; margin-top: 32px;">
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Do I need an expensive GPU or paid AI subscription?</h3>
+                    <p>
+                        No. Fumiko is designed to run efficiently on standard consumer laptops using lightweight models like <code>llama3.2:1b</code> through Ollama. It runs entirely on CPU or integrated graphics without needing an expensive GPU or any paid monthly subscription.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Can I connect work or university Microsoft accounts?</h3>
+                    <p>
+                        Personal Microsoft accounts (<code>@outlook.com</code>, <code>@hotmail.com</code>) connect seamlessly. Enterprise work and university Office 365 accounts may require your organization's IT administrator to approve the client ID due to Microsoft's corporate tenant security policies.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Can I connect my Gmail account? Why do I need developer keys?</h3>
+                    <p>
+                        Yes! However, because Google treats inbox reading as a restricted scope, public one-click sign-ins require Google's formal publisher verification. Until Fumiko completes that process, you simply supply your own free Google Cloud Client ID and Secret in the app settings (we provide a step-by-step 2-minute guide). Once configured, your personal or work Gmail accounts connect directly and run completely locally.
+                    </p>
+                </div>
+
+                <div class="feature-card feature-card--fumiko">
+                    <h3>Does Google or Microsoft receive my AI classification prompts?</h3>
+                    <p>
+                        Never. The application connects directly to Google and Microsoft only to fetch message headers and bodies over encrypted HTTPS. All AI classification prompts execute strictly against your local loopback address (<code>127.0.0.1:11434</code>).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download" id="download">
+            <div class="download__content">
+                <h2>Get Fumiko for Desktop</h2>
+                <p>Free, open source under MPL-2.0, and completely local.</p>
+
+                <div class="download__buttons">
+                    <a href="https://github.com/AnimeForLife191/Fumiko/releases/latest/download/fumiko-x86_64-pc-windows-msvc.zip" 
+                    class="button button--fumiko-primary">
+                        Download for Windows (.zip)
+                    </a>
+                    <a href="https://github.com/AnimeForLife191/Fumiko/releases/latest/download/fumiko-x86_64-unknown-linux-gnu.tar.gz" 
+                    class="button button--fumiko-primary">
+                        Download for Linux (.tar.gz)
+                    </a>
+                </div>
+
+                <p class="download__note">
+                    If you are wanting to use Gmail, please follow the <a href="docs.html#CREDENTIAL_SETUP.md" target="_blank" rel="noopener noreferrer">Account Setup</a> Guide
+                </p>
+
+                <p class="download__note">
+                    Requires <a href="https://ollama.com" target="_blank" rel="noopener noreferrer">Ollama</a> installed locally for on-device AI features.
+                </p>
+                <p class="download__note">
+                    Prefer to build from source? Check out our setup guide and build instructions on 
+                    <a href="https://github.com/AnimeForLife191/Fumiko" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Support and Docs Links -->
+        <section class="support" id="support">
+            <div class="support__content">
+                <h2>Project Resources</h2>
+                <div class="support__links">
+                    <a href="https://github.com/AnimeForLife191/Fumiko" target="_blank" rel="noopener noreferrer" class="support-link">Source Repository</a>
+                    <a href="https://github.com/AnimeForLife191/Fumiko/releases" target="_blank" rel="noopener noreferrer" class="support-link">Releases & Changelog</a>
+                    <a href="https://github.com/AnimeForLife191/Fumiko/issues" target="_blank" rel="noopener noreferrer" class="support-link">Report a Bug / Issue</a>
+                    <a href="docs.html" target="_blank" rel="noopener noreferrer" class="support-link">Guides & Architecture Documentation</a>
+                    <a href="privacy.html" class="support-link">Privacy Policy</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer footer--fumiko">
+        <p>&copy; 2026 Fumiko · Developed by <a href="/index.html" style="color: var(--fumiko-coral); text-decoration: none;">ShuhariTech</a>. Open Source under the Mozilla Public License 2.0 (MPL-2.0).</p>
+    </footer>
+</body>
+</html>

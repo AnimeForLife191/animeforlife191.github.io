@@ -1,0 +1,212 @@
+:root {
+    /* Base navy surface */
+    --card-surface: #0e1726;
+    --card-surface-soft: #121e33;
+    --theme-border: rgba(98, 165, 255, 0.15);
+
+    /* Fumiko's signature colors */
+    --fumiko-violet-raw: 139, 92, 246;
+    --fumiko-coral-raw: 255, 127, 138;
+    --fumiko-violet: rgb(var(--fumiko-violet-raw));
+    --fumiko-coral: rgb(var(--fumiko-coral-raw));
+    --fumiko-dark: #0f0a1f;
+    --fumiko-light: #443086;
+}
+
+.page-shell {
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto;
+    padding-bottom: 5rem;
+}
+
+.page-hero {
+    padding: 4.5rem 0 3rem;
+    text-align: center;
+}
+
+.page-hero__content {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.page-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+}
+
+.page-hero__description {
+    color: var(--text-muted, #94a3b8);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project roster grid */
+.project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+/* Base project card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2.2rem 2rem;
+    border: 1px solid var(--theme-border);
+    border-radius: 20px;
+    background: var(--card-surface);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.project-card__identity {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.project-card__kanji {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.project-card__role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    opacity: 0.8;
+}
+
+.project-card__status {
+    font-size: 0.75rem;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+}
+
+.project-card__content h2 {
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+}
+
+.project-card__content p {
+    color: var(--text-muted, #cbd5e1);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+}
+
+.tags-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 0.3rem 0.65rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #e2e8f0;
+}
+
+.project-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Fumiko Theme (Violet & Coral Aura) */
+.project-card--fumiko {
+    background: linear-gradient(180deg, #120c24 0%, #0f0a1f 100%);
+    border-color: rgba(var(--fumiko-violet-raw), 0.3);
+}
+
+.project-card--fumiko:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--fumiko-coral-raw), 0.5);
+    box-shadow: 0 16px 40px rgba(var(--fumiko-violet-raw), 0.25);
+}
+
+.project-card--fumiko .project-card__kanji {
+    color: var(--fumiko-coral);
+}
+
+.project-card--fumiko .project-card__role {
+    color: var(--fumiko-violet);
+}
+
+.project-card--fumiko .project-card__status {
+    color: var(--fumiko-coral);
+    background: rgba(var(--fumiko-coral-raw), 0.1);
+}
+
+.project-card--fumiko h2 {
+    color: #ffffff;
+}
+
+.button--fumiko {
+    background: linear-gradient(135deg, var(--fumiko-violet), var(--fumiko-coral));
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.button--fumiko:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(var(--fumiko-violet-raw), 0.4);
+}
+
+.button--ghost {
+    border: 1px solid rgba(var(--fumiko-violet-raw), 0.5);
+    background: transparent;
+    color: #ffffff;
+    padding: 0.7rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.button--ghost:hover {
+    border-color: var(--fumiko-coral);
+    color: var(--fumiko-coral);
+    background: rgba(var(--fumiko-coral-raw), 0.08);
+}
+
+/* Upcoming Project Card (Muted / Mysterious) */
+.project-card--upcoming {
+    background: rgba(16, 28, 47, 0.3);
+    border: 1px dashed var(--theme-border);
+    opacity: 0.7;
+}
+
+.project-card--upcoming .project-card__status--upcoming {
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.05);
+}

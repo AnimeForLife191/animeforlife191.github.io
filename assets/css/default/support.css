@@ -1,0 +1,175 @@
+:root {
+    /* Brand color channels (RGB) */
+    --primary-blue-raw: 63, 140, 255;
+    --secondary-blue-raw: 125, 184, 255;
+
+    /* Base colors */
+    --primary-color: rgb(var(--primary-blue-raw));
+    --secondary-color: rgb(var(--secondary-blue-raw));
+
+    /* Surfaces & backgrounds */
+    --card-surface: #101c2f;
+    --card-surface-soft: #14253d;
+
+    /* Gradients */
+    --card-gradient: linear-gradient(180deg, var(--card-surface) 0%, var(--card-surface-soft) 100%);
+    --card-gradient-hover: linear-gradient(180deg, #14243b 0%, #1a304e 100%);
+
+    /* Borders & glows */
+    --theme-border: rgba(var(--primary-blue-raw), 0.18);
+    --theme-border-hover: rgba(var(--primary-blue-raw), 0.45);
+    --theme-glow: rgba(var(--primary-blue-raw), 0.22);
+}
+
+.page-shell {
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto;
+    padding-bottom: 5rem;
+}
+
+.page-hero {
+    padding: 4.5rem 0 3rem;
+    text-align: center;
+}
+
+.page-hero__content {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.page-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+}
+
+.page-hero__description {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* Support Ways Grid */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0 5rem;
+}
+
+.support-card {
+    background: var(--card-gradient);
+    border: 1px solid var(--theme-border);
+    border-radius: 18px;
+    padding: 2.2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-card:hover {
+    background: var(--card-gradient-hover);
+    transform: translateY(-4px);
+    border-color: var(--theme-border-hover);
+    box-shadow: 0 16px 36px var(--theme-glow);
+}
+
+.support-card__icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.support-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.support-card p {
+    color: var(--text, #ffffff);
+    font-size: 0.96rem;
+    line-height: 1.65;
+    opacity: 0.88;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.card-link:hover {
+    color: var(--secondary-color);
+    transform: translateX(3px);
+}
+
+/* Donation Section */
+.donation-section {
+    border-top: 1px solid var(--theme-border);
+    padding-top: 4rem;
+}
+
+.donation-card {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    background: var(--card-gradient);
+    border: 1px solid var(--theme-border);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+}
+
+.donation-badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(var(--primary-blue-raw), 0.12);
+    border: 1px solid var(--theme-border);
+    border-radius: 999px;
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+.donation-card h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.donation-card p {
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    color: var(--text, #ffffff);
+    font-size: 1.02rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.donation-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.donation-note {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.8;
+}

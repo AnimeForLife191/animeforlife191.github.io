@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Fumiko</title>
+    <meta name="description" content="Privacy Policy for Fumiko, an open-source, local-first email watcher. Learn how Fumiko processes email data 100% on your device.">
+    <link rel="stylesheet" href="../../assets/css/default/shared.css">
+    <link rel="stylesheet" href="../../assets/css/default/fumiko.css">
+</head>
+<body class="fumiko-theme">
+    <header class="navbar navbar--fumiko">
+        <a href="fumiko.html" class="navbar__brand">Fumiko</a>
+
+        <nav class="navbar__nav-links">
+            <a href="/index.html">Home</a>
+            <a href="../applications.html">Applications</a>
+            <a href="fumiko.html">Fumiko App</a>
+            <a href="docs.html">Documentation</a>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="page-hero page-hero--fumiko">
+            <div class="page-hero__content">
+                <p class="eyebrow">Security & Transparency</p>
+                <h1>Privacy Policy</h1>
+                <p class="page-hero__description">
+                    Your privacy is our primary design principle. Fumiko keeps all email synchronization, credential storage, and AI processing entirely on your local device.
+                </p>
+            </div>
+        </section>
+
+        <article class="privacy">
+            <section class="privacy__section">
+                <h2>1. Overview & Core Philosophy</h2>
+                <p>
+                    Fumiko is a local-first desktop email client and inbox watcher developed by <strong>ShuhariTech</strong>. This Privacy Policy outlines how Fumiko interacts with your data when you link your Gmail or Outlook/Microsoft 365 accounts.
+                </p>
+                <p>
+                    Fumiko operates without any central backend servers, cloud relays, or proxy services. All network requests take place directly between your local machine and your email providers over encrypted HTTPS connections.
+                </p>
+            </section>
+
+            <section class="privacy__section">
+                <h2>2. Information Fumiko Accesses & Stores</h2>
+                <p>
+                    Fumiko operates strictly as a read-only client to monitor, summarize, and categorize your email. It never requests permission to send, alter, or delete emails from your remote mailboxes.
+                </p>
+
+                <ul class="privacy__list">
+                    <li>
+                        <strong>Account Authentication Credentials:</strong> Fumiko uses industry-standard OAuth 2.0 with PKCE (Proof Key for Code Exchange) via dynamic loopback listeners (<code>127.0.0.1</code>). Fumiko <strong>never</strong> asks for, sees, or stores your email account passwords.
+                    </li>
+                    <li>
+                        <strong>Refresh Tokens & Client Secrets:</strong> Long-lived OAuth refresh tokens and user-provided client secrets are stored exclusively in your operating system's native credential vault (Apple Keychain, Windows Credential Manager, or Linux Secret Service / Keyutils). They are never written to plain-text database tables or application logs.
+                    </li>
+                    <li>
+                        <strong>Access Tokens:</strong> Short-lived access tokens are retained exclusively in system memory (RAM) and are discarded upon token rotation or application shutdown.
+                    </li>
+                    <li>
+                        <strong>Email Metadata & Snippets:</strong> To enable fast, offline inbox navigation, Fumiko synchronizes lightweight summary metadata (message IDs, subjects, sender addresses, timestamps, preview snippets, read status, and trash flags) directly into an indexed local SQLite database on your device.
+                    </li>
+                    <li>
+                        <strong>Full Message Bodies:</strong> Message bodies (HTML and plain text) are fetched on-demand directly from your provider only when you view an email or during quota-capped Tier 2 AI body analysis. Message bodies are rendered inside sandboxed, sanitized HTML containers and are not permanently saved into the local SQLite database.
+                    </li>
+                    <li>
+                        <strong>Watch Rules & Local Settings:</strong> User-configured watch criteria, custom category labels, display names, and theme preferences (<code>custom.css</code>) reside strictly in your local database.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>3. Local-Only AI Classification</h2>
+                <p>
+                    Fumiko provides automated email classification powered by local language models through an on-device daemon (such as Ollama) over local IPv4 loopback (<code>http://127.0.0.1:11434</code>).
+                </p>
+                <ul class="privacy__list">
+                    <li><strong>Zero Cloud AI Calls:</strong> Email headers, preview snippets, and body contents are never transmitted to external cloud AI APIs (such as OpenAI, Anthropic, or remote inference endpoints).</li>
+                    <li><strong>Two-Tier Local Processing:</strong> Tier 1 evaluates only metadata and snippets already cached locally. Tier 2 promotes ambiguous messages to temporary body inspection under strict batch limits. All inferences occur entirely in memory on your local CPU/GPU.</li>
+                    <li><strong>Prompt Isolation:</strong> Prompt buffers are temporary and discarded immediately following local model evaluation.</li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>4. Third-Party Provider Integrations</h2>
+                <p>
+                    Fumiko interacts directly with official third-party APIs using minimal, read-only permissions:
+                </p>
+                <ul class="privacy__list">
+                    <li>
+                        <strong>Google (Gmail API):</strong> Fumiko uses the <code>https://www.googleapis.com/auth/gmail.readonly</code> scope. Fumiko's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" 
+                        target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the <strong>Limited Use</strong> requirements. Fumiko does not transfer, sell, or use Google user data for advertising, profiling, or training external AI models.
+                    </li>
+                    <li>
+                        <strong>Microsoft (Microsoft Graph API):</strong> Fumiko requests <code>Mail.Read</code>, <code>User.Read</code>, and <code>offline_access</code> permissions to authenticate and sync inbox metadata from personal, school, or work accounts directly via Microsoft identity endpoints.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>5. Information Fumiko Does Not Collect</h2>
+                <ul class="privacy__list">
+                    <li>Fumiko does not collect telemetry, crash dumps, IP addresses, or diagnostic logs.</li>
+                    <li>Fumiko does not use third-party analytics SDKs, trackers, or cookies.</li>
+                    <li>Fumiko does not sell, rent, monetize, or broker user data under any circumstances.</li>
+                    <li>Fumiko does not run intermediate cloud servers or proxy your network traffic.</li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>6. Data Retention, Control, and "Wipe All Data"</h2>
+                <p>
+                    Because all data is stored locally, you have total control over your information at all times:
+                </p>
+                <ul class="privacy__list">
+                    <li>
+                        <strong>Account Unlinking:</strong> Disconnecting an account immediately removes its refresh token from your operating system keyring and triggers a cascading deletion of all associated email metadata and classifications in your local SQLite database.
+                    </li>
+                    <li>
+                        <strong>Configurable Trash Purging:</strong> You can configure automated local retention windows to permanently delete expired or trashed items from your local database.
+                    </li>
+                    <li>
+                        <strong>One-Click "Wipe All Data":</strong> Fumiko includes a built-in master reset feature. Using the "Wipe All Data" function will:
+                        <ol style="margin: 0.5rem 0 0.5rem 1.5rem; line-height: 1.7;">
+                            <li>Delete all saved refresh tokens and custom OAuth client secrets from your operating system keyring.</li>
+                            <li>Atomically clear all linked accounts, synchronized emails, classifications, watch criteria, and settings from SQLite.</li>
+                            <li>Perform an immediate database checkpoint and <code>VACUUM</code> to physically zero out and reclaim disk space.</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <strong>Revoking Access:</strong> You can revoke Fumiko’s access tokens at any time directly through your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google Account Security Settings</a> or <a href="https://account.microsoft.com/privacy" target="_blank" rel="noopener noreferrer">Microsoft Privacy Dashboard</a>.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>7. Application Security Practices</h2>
+                <p>
+                    Fumiko employs defensive architectural safeguards to secure your mailbox data:
+                </p>
+                <ul class="privacy__list">
+                    <li><strong>Keyring Isolation:</strong> Secrets are physically separated from application databases and held in native OS-level credential vaults.</li>
+                    <li><strong>PKCE & Constant-Time Validation:</strong> Authorization requests generate cryptographically random PKCE verifiers and validate CSRF state tokens byte-by-byte to prevent timing side channels.</li>
+                    <li><strong>HTML Frame Sandboxing:</strong> Email content is sanitized using strict parsers (Ammonia) and isolated within sandboxed frames to prevent cross-site scripting and unauthorized local resource access.</li>
+                    <li><strong>Redacted Logging:</strong> Credential structures implement redacted debug formatting to prevent tokens from appearing in terminal output or system traces.</li>
+                </ul>
+            </section>
+
+            <section class="privacy__section">
+                <h2>8. Children's Privacy</h2>
+                <p>
+                    Fumiko is a desktop email utility and is not directed at children under the age of 13 (or 16 in the European Union). ShuhariTech does not knowingly collect or solicit personal information from children.
+                </p>
+            </section>
+
+            <section class="privacy__section">
+                <h2>9. Changes to This Policy</h2>
+                <p>
+                    This policy may be updated periodically to reflect new local features or changes in provider API requirements. The revised version will always be published on this page with an updated effective date.
+                </p>
+            </section>
+
+            <section class="privacy__section">
+                <h2>10. Contact Information</h2>
+                <p>
+                    If you have questions, feedback, or security concerns regarding Fumiko or this Privacy Policy, please contact ShuhariTech:
+                </p>
+                <ul class="privacy__list">
+                    <li><strong>Email:</strong> <a href="mailto:shuharitech191@gmail.com">shuharitech191@gmail.com</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/AnimeForLife191" target="_blank" rel="noopener noreferrer">github.com/AnimeForLife191</a></li>
+                    <li><strong>Issues:</strong> <a href="https://github.com/AnimeForLife191/Fumiko/issues/new" target="_blank" rel="noopener noreferrer">github.com/AnimeForLife191/Fumiko/issues/new</a></li>
+                </ul>
+                <p>
+                    ShuhariTech is based in the United States.
+                </p>
+            </section>
+
+            <section class="privacy__section privacy__section--last">
+                <p class="privacy__updated">
+                    Effective date: September 10, 2026
+                </p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer footer--fumiko">
+        <p>&copy; 2026 Fumiko · Developed by <a href="/index.html" style="color: var(--fumiko-coral); text-decoration: none;">ShuhariTech</a>. Made with care.</p>
+    </footer>
+</body>
+</html>

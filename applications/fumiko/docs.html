@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Fumiko</title>
+    <link rel="stylesheet" href="../../assets/css/default/shared.css">
+    <link rel="stylesheet" href="../../assets/css/default/fumiko.css">
+    <link rel="stylesheet" href="../../assets/css/default/docs.css">
+
+    <!-- Markdown Parser & Code Syntax Highlighting -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+</head>
+<body class="fumiko-theme">
+    <header class="navbar navbar--fumiko">
+        <a href="fumiko.html" class="navbar__brand">Fumiko Docs</a>
+
+        <nav class="navbar__nav-links">
+            <a href="/index.html">Home</a>
+            <a href="fumiko.html">Fumiko App</a>
+            <a href="../applications.html">Applications</a>
+            <a href="https://github.com/AnimeForLife191/Fumiko" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="docs-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+            <!-- 1. Quick Setup Guides -->
+            <p class="docs-sidebar__title">Setup & Guides</p>
+            <ul class="docs-nav">
+                <li>
+                    <button class="docs-btn" data-file="CREDENTIAL_SETUP.md" data-source="root">
+                        Account Setup (Google & Outlook)
+                    </button>
+                </li>
+            </ul>
+
+            <!-- 2. Architecture & Deep Dives -->
+            <p class="docs-sidebar__title" style="margin-top: 24px;">Architecture & Engineering</p>
+            <ul class="docs-nav">
+                <li><button class="docs-btn active" data-file="email_core.md" data-source="docs">Email Synchronization</button></li>
+                <li><button class="docs-btn" data-file="local_ai.md" data-source="docs">Local AI & Classification</button></li>
+                <li><button class="docs-btn" data-file="oauth.md" data-source="docs">OAuth 2.0 & Accounts</button></li>
+                <li><button class="docs-btn" data-file="security.md" data-source="docs">Security Notes</button></li>
+                <li><button class="docs-btn" data-file="storage.md" data-source="docs">Local Database & Keyring</button></li>
+                <li><button class="docs-btn" data-file="ui.md" data-source="docs">Dioxus UI & Desktop Shell</button></li>
+            </ul>
+        </aside>
+
+        <article class="docs-content" id="doc-container">
+            <div class="docs-loading">Loading documentation...</div>
+        </article>
+    </main>
+
+    <footer class="footer footer--fumiko">
+        <p>&copy; 2026 Fumiko · Developed by <a href="/index.html" style="color: var(--fumiko-coral); text-decoration: none;">ShuhariTech</a>.</p>
+    </footer>
+
+    <script>
+        const REPO_BASE = "https://raw.githubusercontent.com/AnimeForLife191/Fumiko/main/";
+
+        const docContainer = document.getElementById("doc-container");
+        const docButtons = document.querySelectorAll(".docs-btn");
+
+        // Enable syntax highlighting in marked
+        marked.setOptions({
+            highlight: function(code, lang) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            }
+        });
+
+        async function loadDoc(fileName, source = "docs") {
+            docContainer.innerHTML = `<div class="docs-loading">Loading ${fileName}...</div>`;
+            
+            const fetchUrl = source === "root" 
+                ? REPO_BASE + fileName 
+                : REPO_BASE + "docs/" + fileName;
+
+            try {
+                const response = await fetch(fetchUrl);
+                if (!response.ok) throw new Error("Document not found");
+                const markdownText = await response.text();
+                
+                docContainer.innerHTML = marked.parse(markdownText);
+                window.location.hash = fileName;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (err) {
+                docContainer.innerHTML = `
+                    <h2>Document Unavailable</h2>
+                    <p>Could not fetch <code>${fileName}</code> from GitHub. Check that the file exists in your repository.</p>
+                `;
+            }
+        }
+
+        // Handle button clicks
+        docButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                docButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                loadDoc(btn.dataset.file, btn.dataset.source);
+            });
+        });
+
+        // Deep linking: check URL hash (e.g. docs.html#oauth.md) or default to email_core.md
+        const initialDoc = window.location.hash.replace("#", "");
+        if (initialDoc) {
+            const matchingBtn = Array.from(docButtons).find(b => b.dataset.file === initialDoc);
+            if (matchingBtn) {
+                docButtons.forEach(b => b.classList.remove("active"));
+                matchingBtn.classList.add("active");
+                loadDoc(matchingBtn.dataset.file, matchingBtn.dataset.source);
+            } else {
+                loadDoc("email_core.md", "docs");
+            }
+        } else {
+            loadDoc("email_core.md", "docs");
+        }
+    </script>
+</body>
+</html>
