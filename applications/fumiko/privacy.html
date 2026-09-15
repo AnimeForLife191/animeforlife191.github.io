@@ -35,7 +35,7 @@
             <section class="privacy__section">
                 <h2>1. Overview & Core Philosophy</h2>
                 <p>
-                    Fumiko is a local-first desktop email client and inbox watcher developed by <strong>ShuhariTech</strong>. This Privacy Policy outlines how Fumiko interacts with your data when you link your Gmail or Outlook/Microsoft 365 accounts.
+                    Fumiko is a local-first desktop email client and inbox watcher developed by <strong>ShuhariTech</strong>. "This Privacy Policy outlines how Fumiko interacts with your data when you link your Gmail, Outlook, or standard IMAP accounts."
                 </p>
                 <p>
                     Fumiko operates without any central backend servers, cloud relays, or proxy services. All network requests take place directly between your local machine and your email providers over encrypted HTTPS connections.
@@ -50,7 +50,7 @@
 
                 <ul class="privacy__list">
                     <li>
-                        <strong>Account Authentication Credentials:</strong> Fumiko uses industry-standard OAuth 2.0 with PKCE (Proof Key for Code Exchange) via dynamic loopback listeners (<code>127.0.0.1</code>). Fumiko <strong>never</strong> asks for, sees, or stores your email account passwords.
+                        <strong>Account Authentication Credentials:</strong> For OAuth providers (Google and Microsoft), Fumiko uses industry-standard OAuth 2.0 with PKCE via dynamic loopback listeners (<code>127.0.0.1</code>). Fumiko <strong>never</strong> asks for, sees, or stores your primary email account passwords. For IMAP accounts, provider-generated App Passwords are encrypted directly in your operating system's native credential vault.
                     </li>
                     <li>
                         <strong>Refresh Tokens & Client Secrets:</strong> Long-lived OAuth refresh tokens and user-provided client secrets are stored exclusively in your operating system's native credential vault (Apple Keychain, Windows Credential Manager, or Linux Secret Service / Keyutils). They are never written to plain-text database tables or application logs.
@@ -94,6 +94,9 @@
                     </li>
                     <li>
                         <strong>Microsoft (Microsoft Graph API):</strong> Fumiko requests <code>Mail.Read</code>, <code>User.Read</code>, and <code>offline_access</code> permissions to authenticate and sync inbox metadata from personal, school, or work accounts directly via Microsoft identity endpoints.
+                    </li>
+                    <li>
+                        <strong>Universal IMAP Providers (Apple iCloud, Fastmail, Yahoo, Gmail, or Custom Mail Servers):</strong> Fumiko connects directly to your specified mail servers using encrypted TLS connections on standard port 993. All IMAP communications (credential verification, message header discovery, and PEEK body retrievals) occur strictly between your computer and your email server with no intermediary proxies or relay servers.
                     </li>
                 </ul>
             </section>
@@ -167,7 +170,7 @@
                     If you have questions, feedback, or security concerns regarding Fumiko or this Privacy Policy, please contact ShuhariTech:
                 </p>
                 <ul class="privacy__list">
-                    <li><strong>Email:</strong> <a href="mailto:shuharitech191@gmail.com">shuharitech191@gmail.com</a></li>
+                    <li><strong>Email:</strong> <a href="mailto:shuharitech@outlook.com">shuharitech@outlook.com</a></li>
                     <li><strong>GitHub:</strong> <a href="https://github.com/AnimeForLife191" target="_blank" rel="noopener noreferrer">github.com/AnimeForLife191</a></li>
                     <li><strong>Issues:</strong> <a href="https://github.com/AnimeForLife191/Fumiko/issues/new" target="_blank" rel="noopener noreferrer">github.com/AnimeForLife191/Fumiko/issues/new</a></li>
                 </ul>
@@ -178,7 +181,7 @@
 
             <section class="privacy__section privacy__section--last">
                 <p class="privacy__updated">
-                    Effective date: September 10, 2026
+                    Effective date: September 14, 2026
                 </p>
             </section>
         </article>

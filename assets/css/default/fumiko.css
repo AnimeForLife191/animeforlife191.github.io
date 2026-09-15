@@ -77,12 +77,14 @@ body.fumiko-theme {
 
 /* Hero */
 .page-hero--fumiko {
-    background: var(--hero-gradient);
-    border: 1px solid var(--theme-border);
-    border-radius: 18px;
-    padding: 4.5rem 2rem;
-    margin: 2.5rem 0;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 3.5rem 3rem;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
 }
 
 .page-hero--fumiko h1 {
@@ -96,6 +98,11 @@ body.fumiko-theme {
     letter-spacing: -0.04em;
 }
 
+.page-hero__content {
+    max-width: 600px;
+    margin: 0;
+}
+
 .page-hero__description {
     color: var(--text-muted);
     font-size: 1.1rem;
@@ -106,9 +113,45 @@ body.fumiko-theme {
 
 .page-hero__actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+.hero__character-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    border-radius: 24px;
+    border: 1px solid var(--theme-border);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 28px rgba(var(--fumiko-violet-raw), 0.25);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    animation: heroFloat 6s ease-in-out infinite alternate;
+}
+
+.hero__character-img:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.7), 0 0 36px rgba(var(--fumiko-coral-raw), 0.35);
+    border-color: rgba(var(--fumiko-coral-raw), 0.45);
+}
+
+.hero__character-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(var(--fumiko-violet-raw), 0.35) 0%, rgba(var(--fumiko-coral-raw), 0.15) 50%, transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero__character-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Buttons */
@@ -415,4 +458,42 @@ body.fumiko-theme {
     font-size: 0.9rem;
     font-style: italic;
     text-align: center;
+}
+
+.engine-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(var(--fumiko-violet-raw), 0.15);
+    border: 1px solid var(--theme-border);
+    color: var(--fumiko-coral);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+@media (max-width: 900px) {
+    .page-hero--fumiko {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 3.5rem 1.5rem;
+    }
+
+    .page-hero__content {
+        margin: 0 auto;
+    }
+
+    .page-hero__actions {
+        justify-content: center;
+    }
+
+    .hero__character-wrapper {
+        margin-top: 2rem;
+    }
+
+    .hero__character-img {
+        max-width: 280px;
+    }
 }

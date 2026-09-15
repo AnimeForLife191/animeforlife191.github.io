@@ -34,4 +34,3 @@ python3 -m http.server 8000
 ## License
 
 Source code and templates are licensed under the [Mozilla Public License 2.0 (MPL-2.0)](LICENSE).  
-Brand names, logos, and character personas are reserved by ShuhariTech.
